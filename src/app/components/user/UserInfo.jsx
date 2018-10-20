@@ -1,5 +1,10 @@
 import React from 'react';
 import Centered from '../container';
+import styled from 'styled-components';
+
+const Bold = styled.span`
+  font-weight: bold;
+`
 
 class UserInfo extends React.PureComponent {
   render() {
@@ -7,11 +12,11 @@ class UserInfo extends React.PureComponent {
     return (
       <Centered>
         <h2>User Info</h2>
-        <p>Fullname: {fullname}</p>
-        <p>Mobile: {mobile}</p>
-        <p>Email: {email}</p>
-        <p>Gender: {gender}</p>
-        <p>Race: {race}</p>
+        <p><Bold>Fullname:</Bold> {fullname}</p>
+        <p><Bold>Mobile: </Bold> {mobile}</p>
+        <p><Bold>Email: </Bold> {email}</p>
+        <p><Bold>Gender: </Bold> {gender}</p>
+        <p><Bold>Race: </Bold> {race}</p>
       </Centered>
     )
   }
