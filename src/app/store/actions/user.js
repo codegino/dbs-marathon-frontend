@@ -96,7 +96,7 @@ export const fetchUserReport = () => async dispatch => {
   try {
     const res = await axios.get('users/report')
 
-    dispatch({type: GENERATE_REPORT_SUCCESS, users: res.data}) 
+    dispatch({type: GENERATE_REPORT_SUCCESS, users: res.data.users}) 
 
     toast.success('Successfully fetch user.', {
       position: toast.POSITION.TOP_CENTER,

@@ -4,6 +4,7 @@ import Page from '../../components/page';
 import {fetchUser, fetchUserReport} from '../../store/actions/user';
 import Button from '../../components/button';
 import Centered from '../../components/container';
+import UsersTable from '../../components/table/UsersTable';
 
 class AdminPage extends React.PureComponent {
   state = {
@@ -12,7 +13,8 @@ class AdminPage extends React.PureComponent {
 
   render() {
     const {queryString} = this.state;
-    const {username} = this.props.admin;
+    const {admin: {username}, users} = this.props;
+
     return (
     <Page id="admin">
       <Centered>
@@ -23,6 +25,7 @@ class AdminPage extends React.PureComponent {
         <Button onClick={() => this.props.fetchUser({queryString})}>Search</Button>
         <Button onClick={() => this.props.fetchUserReport()}>Fetch Users</Button>
       </Centered>
+      {users.length > 0 ? <UsersTable users={users} /> : null}
     </Page>
   )}
 }
@@ -33,7 +36,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-  admin: state.user.admin
+  admin: state.user.admin,
+  users: state.user.users
 })
 
 export default connect(
