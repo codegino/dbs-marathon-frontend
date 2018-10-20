@@ -1,6 +1,7 @@
 // The basics
 import React, { PureComponent } from 'react';
 import { withRouter } from 'react-router';
+import { ToastContainer } from 'react-toastify';
 
 // Action creators and helpers
 import Header from './components/header/Header';
@@ -26,6 +27,7 @@ class App extends PureComponent {
         <Content>
           <Routes />
         </Content>
+        <ToastContainer />
       </AppWrapper>
     );
   }

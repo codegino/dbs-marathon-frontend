@@ -2,13 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Page from '../../components/page';
 import { reviewUser } from '../../store/actions/user';
+import Container from '../../components/container/Container';
 import styled from 'styled-components';
-
-const containerStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-}
 
 const Form = styled.form`
   display: flex;
@@ -17,7 +12,7 @@ const Form = styled.form`
   align-self: center;
   border: 1px solid black;
   border-radius: 6px;
-  width: 90%;
+  width: 100%;
   padding: 5px 1rem;
 `
 
@@ -30,16 +25,18 @@ class RegistrationPage extends React.PureComponent {
   render() {
     const {email, mobile} = this.state
     return (
-      <Page id="login" title="Login" description="Register to marathon." style={containerStyle}>
-        <Form onSubmit={e => e.preventDefault()}>
-          <label htmlFor="email">Email</label>
-          <input id="email" type="text" placeholder="Enter email address" value={email}
-          onChange={e => this.setState({email: e.target.value})}/>
-          <label htmlFor="mobile">Mobile</label>
-          <input id="mobile" type="text" placeholder="Enter mobile number" value={mobile}
-          onChange={e => this.setState({mobile: e.target.value})}/>
-          <input type="button" onClick={() => this.props.reviewUser({email, mobile})} value="Submit"/>
-        </Form>
+      <Page id="login" title="Login" description="Register to marathon.">
+        <Container>
+          <Form onSubmit={e => e.preventDefault()}>
+            <label htmlFor="email">Email</label>
+            <input id="email" type="text" placeholder="Enter email address" value={email}
+            onChange={e => this.setState({email: e.target.value})}/>
+            <label htmlFor="mobile">Mobile</label>
+            <input id="mobile" type="text" placeholder="Enter mobile number" value={mobile}
+            onChange={e => this.setState({mobile: e.target.value})}/>
+            <input type="button" onClick={() => this.props.reviewUser({email, mobile})} value="Submit"/>
+          </Form>
+        </Container>
       </Page>
     )
   }
