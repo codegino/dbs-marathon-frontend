@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import Loading from '../loading/LoadingMask';
 
 import { withRouter } from 'react-router';
@@ -18,6 +19,12 @@ const defaultTitle = 'My Website';
 const defaultDescription = 'This is a description to be used in SEO.';
 const defaultTwitter = '@carlogihooh';
 const defaultSep = ' | ';
+
+const PageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
 
 class Page extends Component {
   getMetaTags(
@@ -83,7 +90,7 @@ class Page extends Component {
     const { children, id, className, ...rest } = this.props;
 
     return (
-      <div id={id} className={className}>
+      <PageWrapper>
         {this.props.loading ? <Loading /> : null}
         <Helmet
           htmlAttributes={{
@@ -103,7 +110,7 @@ class Page extends Component {
           meta={this.getMetaTags(rest, this.props.location.pathname)}
         />
         {children}
-      </div>
+      </PageWrapper>
     );
   }
 }

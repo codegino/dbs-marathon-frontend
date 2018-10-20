@@ -7,6 +7,7 @@ export const REGISTER_USER_SUCCESS = 'auth/REGISTER_SUCCESS';
 export const REGISTER_USER_FAILED = 'auth/REGISTER_FAILED';
 export const REVIEW_USER = 'auth/REVIEW/USER';
 export const LOGIN_SUCCESS = 'auth/LOGIN_SUCESS';
+export const LOGIN_FAILED = 'auth/LOGIN_FAILED';
 
 export const reviewUser = (user) => async dispatch => {
   dispatch({type: REVIEW_USER, user}) 
@@ -23,12 +24,12 @@ export const login = ({username, password}) => async dispatch => {
     console.log(res.data)
     dispatch({type: LOGIN_SUCCESS, admin: res.data})
     history.push('/admin')
+    dispatch(onLoadingEnd());
   } catch(e) {
-    console.log(e.message)
-    dispatch({type: REGISTER_USER_FAILED}) 
+    dispatch({type: LOGIN_FAILED})
+    dispatch(onLoadingEnd());
+    return Promise.reject('Invalid login')
   }
-
-  dispatch(onLoadingEnd());
 }
 
 export const registerUser = ({email, mobile}) => async dispatch => {

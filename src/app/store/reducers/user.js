@@ -1,4 +1,4 @@
-import {LOGIN_SUCCESS, REVIEW_USER} from '../actions/user'
+import {LOGIN_SUCCESS, REVIEW_USER, LOGIN_FAILED} from '../actions/user'
 
 const initialState = {
   admin: null,
@@ -11,6 +11,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         admin: action.admin
+      };
+    case LOGIN_FAILED:
+      return {
+        ...state,
+        admin: null
       };
     case REVIEW_USER:
       return {
