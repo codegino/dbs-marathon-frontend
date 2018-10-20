@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Page from '../../components/page';
 import {fetchUser} from '../../store/actions/user';
-import Centered from '../../components/container/Centered';
+import Centered from '../../components/container';
 
 class HomePage extends React.PureComponent {
   state = {

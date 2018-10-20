@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Page from '../../components/page';
 import { login} from '../../store/actions/user';
-import Centered from '../../components/container/Centered'; 
+import Centered from '../../components/container'; 
 
 const Form = styled.form`
   display: flex;

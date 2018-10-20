@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Page from '../../components/page';
 import { reviewUser } from '../../store/actions/user';
-import Centered from '../../components/container/Centered';
+import Centered from '../../components/container';
 import styled from 'styled-components';
 
 const Form = styled.form`
@@ -22,6 +22,16 @@ class RegistrationPage extends React.PureComponent {
     email: '',
     fullname: '',
     gender: 'male'
+  }
+
+  componentDidMount() {
+    if (this.props.pendingUser) {
+      const {email, mobile, fullname, gender} = this.props.pendingUser
+
+      this.setState(prev => ({
+        ...prev, email, mobile, fullname, gender
+      }))
+    }
   }
 
   onReviewHandler = ({email, mobile, fullname, gender}) => {
@@ -64,7 +74,11 @@ const mapDispatchToProps = dispatch => ({
   reviewUser: (user) => dispatch(reviewUser(user))
 })
 
+const mapStateToProps = state => ({
+  pendingUser: state.user.pendingUser
+})
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(RegistrationPage);
