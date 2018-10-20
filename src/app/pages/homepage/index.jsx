@@ -4,6 +4,7 @@ import Page from '../../components/page';
 import {fetchUser} from '../../store/actions/user';
 import Centered from '../../components/container';
 import Button from '../../components/button';
+import Input from '../../components/input';
 import UserInfo from '../../components/user/UserInfo';
 
 class HomePage extends React.PureComponent {
@@ -17,7 +18,7 @@ class HomePage extends React.PureComponent {
       <Centered>
         <h2>Here's our homepage. All are welcome.</h2>
         <label htmlFor="search-query">Search User: </label>
-        <input id="search-query" type="text" placeholder="Enter email or mobile" value={queryString}
+        <Input id="search-query" type="text" placeholder="Enter email or mobile" value={queryString}
         onChange={e => this.setState({queryString: e.target.value})}/>
         <Button onClick={() => this.props.fetchUser({queryString})}>Search</Button>
         {this.props.currentUser ? <UserInfo user={this.props.currentUser}/> : null}

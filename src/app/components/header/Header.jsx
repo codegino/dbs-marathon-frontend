@@ -35,7 +35,7 @@ const HeaderLink = ({ to, text, current }) => (
 );
 
 const Header = styled.header`
-  background-color: #222;
+  background-color: darkgreen;
   height: auto;
   padding: 20px;
   color: white;

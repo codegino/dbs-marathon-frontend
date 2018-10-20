@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import { history } from '../../../store';
 import Page from '../../components/page';
 import { registerUser } from '../../store/actions/user';
+import Select from '../../components/select';
+import races from './dummyRaces';
 
 const Bold = styled.span`
   font-weight: bold;
@@ -24,11 +26,6 @@ class ReviewForm extends React.PureComponent {
   }
 
   render() {
-    const races = [
-      'Fun Run',
-      'Moderate'
-    ];
-
     const racesMap = races.map(race => (
       <option value={race} key={race}>{race}</option>
     ))
@@ -53,13 +50,12 @@ class ReviewForm extends React.PureComponent {
             <Field>
               <Bold>Gender:</Bold> {gender}
             </Field>
-            <Bold>Race:</Bold> <select value={race} onChange={e => {
-              console.log(e.target.value)
+            <Bold>Race:</Bold> <Select value={race} onChange={e => {
               this.setState({race: e.target.value})
             }}>
               <option value=''>Please select to continue</option>
               {racesMap}
-            </select>
+            </Select>
           </Centered>
           <Button onClick={this.onEditHandler}>Edit</Button>
           {race ? <Button onClick={() => this.props.registerUser(race)}>Register</Button> : null}

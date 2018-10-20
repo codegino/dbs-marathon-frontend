@@ -5,6 +5,7 @@ import Page from '../../components/page';
 import { login } from '../../store/actions/user';
 import Centered from '../../components/container'; 
 import { InputButton } from '../../components/button';
+import Input from '../../components/input';
 
 const Form = styled.form`
   display: flex;
@@ -36,10 +37,10 @@ class LoginPage extends React.PureComponent {
         <Centered>
           <Form onSubmit={e => e.preventDefault()}>
             <label htmlFor="username">Username</label>
-            <input id="username" type="text" placeholder="Enter username" value={username}
+            <Input id="username" type="text" placeholder="Enter username" value={username}
             onChange={e => this.setState({username: e.target.value})}/>
             <label htmlFor="password">Password</label>
-            <input id="password" type="password" placeholder="Enter password" value={password}
+            <Input id="password" type="password" placeholder="Enter password" value={password}
             onChange={e => this.setState({password: e.target.value})}/>
             <InputButton type="button" onClick={this.onLoginHandler} value="Login"/>
           </Form>

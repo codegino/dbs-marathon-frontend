@@ -5,6 +5,8 @@ import { reviewUser } from '../../store/actions/user';
 import Centered from '../../components/container';
 import styled from 'styled-components';
 import {InputButton} from '../../components/button';
+import Input from '../../components/input';
+import Select from '../../components/select';
 
 const Form = styled.form`
   display: flex;
@@ -16,7 +18,6 @@ const Form = styled.form`
   width: 100%;
   padding: 5px 1rem;
 `
-
 class RegistrationPage extends React.PureComponent {
   state = {
     mobile: '',
@@ -47,22 +48,22 @@ class RegistrationPage extends React.PureComponent {
           <h2>Register</h2>
           <Form onSubmit={e => e.preventDefault()}>
             <label htmlFor="email">Email</label>
-            <input id="email" type="text" placeholder="Enter email address" value={email}
+            <Input id="email" type="text" placeholder="Enter email address" value={email}
             onChange={e => this.setState({email: e.target.value})}/>
 
             <label htmlFor="mobile">Mobile</label>
-            <input id="mobile" type="text" placeholder="Enter mobile number" value={mobile}
+            <Input id="mobile" type="text" placeholder="Enter mobile number" value={mobile}
             onChange={e => this.setState({mobile: e.target.value})}/>
 
             <label htmlFor="name">Full name</label>
-            <input id="name" type="text" placeholder="Enter your fullname" value={fullname}
+            <Input id="name" type="text" placeholder="Enter your fullname" value={fullname}
             onChange={e => this.setState({fullname: e.target.value})}/>
 
             <label htmlFor="gender">Gender</label>
-            <select value={gender} onChange={e => this.setState({gender: e.target.value})}>
+            <Select value={gender} onChange={e => this.setState({gender: e.target.value})}>
               <option value="male">Male</option>
               <option value="female">Female</option>
-            </select>
+            </Select>
 
             <InputButton type="button" onClick={() => this.onReviewHandler({email, mobile, fullname, gender})} value="Submit" />
           </Form>
