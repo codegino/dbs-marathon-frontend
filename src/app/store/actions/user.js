@@ -12,6 +12,8 @@ export const LOGIN_FAILED = 'auth/LOGIN_FAILED';
 export const REVIEW_USER = 'user/REVIEW/USER';
 export const GENERATE_REPORT_SUCCESS = 'user/GENERATE_REPORT_SUCCESS';
 export const GENERATE_REPORT_FAILED = 'user/GENERATE_REPORT_FAILED';
+export const FETCH_USER_SUCCESS = 'user/FETCH_USER_SUCCESS';
+export const FETCH_USER_FAILED = 'user/FETCH_USER_FAILED';
 
 export const reviewUser = (user) => async dispatch => {
   const {mobile, email} = user;
@@ -92,7 +94,7 @@ export const registerUser = (race) => async dispatch => {
 export const fetchUser = ({queryString}) => async dispatch => {
   dispatch(onLoadingStart());
   try {
-    await axios.get('users', {
+    const res = await axios.get('users', {
       params: {
         queryString
       }
@@ -102,7 +104,9 @@ export const fetchUser = ({queryString}) => async dispatch => {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 1500
     });
+    dispatch({type: FETCH_USER_SUCCESS, user: res.data.user})
   } catch(e) {
+    dispatch({type: FETCH_USER_FAILED}) 
     toast.error('Something went wrong!', {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 1500

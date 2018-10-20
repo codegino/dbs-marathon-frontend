@@ -1,7 +1,8 @@
-import {LOGIN_SUCCESS, REVIEW_USER, LOGIN_FAILED, GENERATE_REPORT_SUCCESS} from '../actions/user'
+import {LOGIN_SUCCESS, REVIEW_USER, LOGIN_FAILED, GENERATE_REPORT_SUCCESS, FETCH_USER_SUCCESS, FETCH_USER_FAILED} from '../actions/user'
 
 const initialState = {
   admin: null,
+  currentUser: null,
   pendingUser: null,
   users: []
 };
@@ -17,6 +18,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         admin: null
+      };
+    case FETCH_USER_SUCCESS:
+      return {
+        ...state,
+        currentUser: action.user
+      }
+    case FETCH_USER_FAILED:
+      return {
+        ...state,
+        currentUser: null
       };
     case REVIEW_USER:
       return {
