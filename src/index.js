@@ -9,6 +9,7 @@ import axios from 'axios';
 
 import App from './app/app';
 import './index.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   // dev code

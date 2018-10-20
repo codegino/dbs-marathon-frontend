@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {toast} from 'react-toastify';
 import {onLoadingStart, onLoadingEnd} from './ui';
 import {history} from '../../../store';
 
@@ -21,14 +22,21 @@ export const login = ({username, password}) => async dispatch => {
       username,
       password 
     })
-    console.log(res.data)
     dispatch({type: LOGIN_SUCCESS, admin: res.data})
     history.push('/admin')
     dispatch(onLoadingEnd());
+    toast.success(`Successfully Login. Welcome ${res.data.username}!`, {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 1500
+    });
   } catch(e) {
     dispatch({type: LOGIN_FAILED})
     dispatch(onLoadingEnd());
-    return Promise.reject('Invalid login')
+    
+    toast.error('Invalid username or password!', {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 3000
+    });
   }
 }
 
