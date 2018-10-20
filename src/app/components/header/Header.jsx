@@ -59,6 +59,7 @@ const Links = styled.ul`
       padding: 10px;
       color: lightGray;
       text-decoration: none;
+      transition: all 1s;
 
       &:hover {
         color: white;
