@@ -6,9 +6,12 @@ import { history, defaultStore } from '../../../store';
 export const REGISTER_USER = 'auth/REGISTER_USER';
 export const REGISTER_USER_SUCCESS = 'auth/REGISTER_SUCCESS';
 export const REGISTER_USER_FAILED = 'auth/REGISTER_FAILED';
-export const REVIEW_USER = 'auth/REVIEW/USER';
 export const LOGIN_SUCCESS = 'auth/LOGIN_SUCESS';
 export const LOGIN_FAILED = 'auth/LOGIN_FAILED';
+
+export const REVIEW_USER = 'user/REVIEW/USER';
+export const GENERATE_REPORT_SUCCESS = 'user/GENERATE_REPORT_SUCCESS';
+export const GENERATE_REPORT_FAILED = 'user/GENERATE_REPORT_FAILED';
 
 export const reviewUser = (user) => async dispatch => {
   dispatch({type: REVIEW_USER, user}) 
@@ -69,24 +72,21 @@ export const registerUser = () => async dispatch => {
 export const fetchUser = ({queryString}) => async dispatch => {
   dispatch(onLoadingStart());
   try {
-    const res = await axios.get('users', {
+    await axios.get('users', {
       params: {
         queryString
       }
     })
 
-    toast.success('Successfully fetch reports.', {
+    toast.success('Successfully fetch user.', {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 1500
     });
-
-    console.log(res)
   } catch(e) {
     toast.error('Something went wrong!', {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 1500
     });
-    dispatch({type: REGISTER_USER_FAILED}) 
   }
   dispatch(onLoadingEnd());
 }
@@ -96,11 +96,14 @@ export const fetchUserReport = () => async dispatch => {
   try {
     const res = await axios.get('users/report')
 
-    console.log(res.data)
+    dispatch({type: GENERATE_REPORT_SUCCESS, users: res.data}) 
+
+    toast.success('Successfully fetch user.', {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 1500
+    });
   } catch(e) {
-    console.log(e)
-    console.log(e.message)
-    dispatch({type: REGISTER_USER_FAILED}) 
+    dispatch({type: GENERATE_REPORT_FAILED}) 
   }
   dispatch(onLoadingEnd());
 }
