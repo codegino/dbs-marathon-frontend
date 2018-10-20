@@ -31,6 +31,7 @@ class LoginPage extends React.PureComponent {
     const {username, password} = this.state
     return (
       <Page id="login" title="Login" description="Register to marathon.">
+        <h2>Login</h2>
         <Centered>
           <Form onSubmit={e => e.preventDefault()}>
             <label htmlFor="username">Username</label>

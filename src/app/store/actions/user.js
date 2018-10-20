@@ -14,7 +14,26 @@ export const GENERATE_REPORT_SUCCESS = 'user/GENERATE_REPORT_SUCCESS';
 export const GENERATE_REPORT_FAILED = 'user/GENERATE_REPORT_FAILED';
 
 export const reviewUser = (user) => async dispatch => {
+  const {mobile, email} = user;
+
+  if (!mobile.match(/^(\+\d{1,3}[- ]?)?\d{10}$/)) {
+    return toast.error('Invalid mobile format!', {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000
+    });
+  }
+
+  // eslint-disable-next-line
+  const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  if (!email.match(emailRegex)) {
+    return toast.error('Invalid email!', {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 2000
+    });
+  }
   dispatch({type: REVIEW_USER, user}) 
+
   history.push('/review')
 }
 
@@ -43,7 +62,7 @@ export const login = ({username, password}) => async dispatch => {
   }
 }
 
-export const registerUser = () => async dispatch => {
+export const registerUser = (race) => async dispatch => {
   try {
     dispatch(onLoadingStart());
     const {email, mobile, fullname, gender} = defaultStore.store.getState().user.pendingUser
@@ -51,7 +70,8 @@ export const registerUser = () => async dispatch => {
       email,
       mobile,
       fullname,
-      gender
+      gender,
+      race
     })
     toast.success('Successfully registered.', {
       position: toast.POSITION.TOP_CENTER,

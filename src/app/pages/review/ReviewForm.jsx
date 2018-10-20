@@ -16,15 +16,30 @@ const Field = styled.div`
 `
 
 class ReviewForm extends React.PureComponent {
+  state = {
+    race: ''
+  }
   onEditHandler = () => {
     history.replace('register')
   }
 
   render() {
-    const {email, mobile, fullname, gender} = this.props.pendingUser
+    const races = [
+      'Fun Run',
+      'Moderate'
+    ];
+
+    const racesMap = races.map(race => (
+      <option value={race} key={race}>{race}</option>
+    ))
+
+    const {email, mobile, fullname, gender} = this.props.pendingUser;
+    const {race} = this.state;
+
     return (
       <Page id="review" title="Review" description="Review details">
         <Centered>
+          <h2>Review</h2>
           <Centered style={{width: '50%'}}>
             <Field>
               <Bold>Email:</Bold> {email}
@@ -38,9 +53,16 @@ class ReviewForm extends React.PureComponent {
             <Field>
               <Bold>Gender:</Bold> {gender}
             </Field>
+            <Bold>Race:</Bold> <select value={race} onChange={e => {
+              console.log(e.target.value)
+              this.setState({race: e.target.value})
+            }}>
+              <option value=''>Please select to continue</option>
+              {racesMap}
+            </select>
           </Centered>
           <Button onClick={this.onEditHandler}>Edit</Button>
-          <Button onClick={this.props.registerUser}>Register</Button>
+          {race ? <Button onClick={() => this.props.registerUser(race)}>Register</Button> : null}
         </Centered>
       </Page>
     )
@@ -52,7 +74,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  registerUser: () => dispatch(registerUser())
+  registerUser: race => dispatch(registerUser(race))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm);

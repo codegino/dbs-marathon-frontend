@@ -5,16 +5,19 @@ class UserTable extends React.PureComponent {
   render() {
     const columns = [{
       Header: 'Fullname',
-      accessor: 'fullname' // String-based value accessors!
+      accessor: 'fullname'
     }, {
       Header: 'Email',
-      accessor: 'email' // String-based value accessors!
+      accessor: 'email'
     }, {
       Header: 'Mobile',
-      accessor: 'mobile' // String-based value accessors!
+      accessor: 'mobile'
     }, {
       Header: 'Gender',
-      accessor: 'gender' // String-based value accessors!
+      accessor: 'gender'
+    }, {
+      Header: 'Race Type',
+      accessor: 'race'
     }]
     return (
       <ReactTable data={this.props.users} columns={columns} />
