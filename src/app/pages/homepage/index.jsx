@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Page from '../../components/page';
 import {fetchUser} from '../../store/actions/user';
 import Centered from '../../components/container';
+import Button from '../../components/button';
 
 class HomePage extends React.PureComponent {
   state = {
@@ -17,7 +18,7 @@ class HomePage extends React.PureComponent {
         <label htmlFor="search-query">Search User: </label>
         <input id="search-query" type="text" placeholder="Enter email or mobile" value={queryString}
         onChange={e => this.setState({queryString: e.target.value})}/>
-        <button onClick={() => this.props.fetchUser({queryString})}>Search</button>
+        <Button onClick={() => this.props.fetchUser({queryString})}>Search</Button>
       </Centered>
     </Page>
   )}

@@ -13,8 +13,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   // dev code
-  // axios.defaults.baseURL = 'http://localhost:3001/';
-  axios.defaults.baseURL = 'https://dbs-assignment-backend.herokuapp.com/';
+  axios.defaults.baseURL = 'http://localhost:3001/';
+  // axios.defaults.baseURL = 'https://dbs-assignment-backend.herokuapp.com/';
 } else {
   axios.defaults.baseURL = 'https://dbs-assignment-backend.herokuapp.com/';
   // production code
