@@ -1,14 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Centered from '../../components/container/Centered'
 
 class ReviewForm extends React.PureComponent {
   render() {
-    const {email, mobile} = this.props.pendingUser
+    const {email, mobile, fullname, gender} = this.props.pendingUser
     return (
-      <div>
-        Review Form {email} {mobile}
-
-      </div>
+      <Centered>
+        Review Form {email} {mobile} {fullname} {gender}
+      </Centered>
     )
   }
 }

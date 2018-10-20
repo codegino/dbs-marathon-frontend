@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Page from '../../components/page';
 import { login} from '../../store/actions/user';
-import Container from '../../components/container/Container'; 
+import Centered from '../../components/container/Centered'; 
 
 const Form = styled.form`
   display: flex;
@@ -31,7 +31,7 @@ class LoginPage extends React.PureComponent {
     const {username, password} = this.state
     return (
       <Page id="login" title="Login" description="Register to marathon.">
-        <Container>
+        <Centered>
           <Form onSubmit={e => e.preventDefault()}>
             <label htmlFor="username">Username</label>
             <input id="username" type="text" placeholder="Enter username" value={username}
@@ -41,7 +41,7 @@ class LoginPage extends React.PureComponent {
             onChange={e => this.setState({password: e.target.value})}/>
             <input type="button" onClick={this.onLoginHandler} value="Login"/>
           </Form>
-        </Container>
+        </Centered>
       </Page>
     )
   }

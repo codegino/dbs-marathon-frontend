@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Page from '../../components/page';
 import {fetchUser} from '../../store/actions/user';
-import Container from '../../components/container/Container';
+import Centered from '../../components/container/Centered';
 
 class HomePage extends React.PureComponent {
   state = {
@@ -12,13 +12,13 @@ class HomePage extends React.PureComponent {
     const {queryString} = this.state;
     return (
     <Page id="homepage">
-      <Container>
+      <Centered>
         <p>Here's our homepage. All are welcome.</p>
         <label htmlFor="search-query">Search User: </label>
         <input id="search-query" type="text" placeholder="Enter email or mobile" value={queryString}
         onChange={e => this.setState({queryString: e.target.value})}/>
         <button onClick={() => this.props.fetchUser({queryString})}>Search</button>
-      </Container>
+      </Centered>
     </Page>
   )}
 }

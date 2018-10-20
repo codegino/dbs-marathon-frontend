@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Page from '../../components/page';
 import { reviewUser } from '../../store/actions/user';
-import Container from '../../components/container/Container';
+import Centered from '../../components/container/Centered';
 import styled from 'styled-components';
 
 const Form = styled.form`
@@ -19,24 +19,42 @@ const Form = styled.form`
 class RegistrationPage extends React.PureComponent {
   state = {
     mobile: '',
-    email: ''
+    email: '',
+    fullname: '',
+    gender: 'male'
+  }
+
+  onReviewHandler = ({email, mobile, fullname, gender}) => {
+    this.props.reviewUser({email, mobile, fullname, gender})
   }
 
   render() {
-    const {email, mobile} = this.state
+    const {email, mobile, fullname, gender} = this.state
     return (
       <Page id="login" title="Login" description="Register to marathon.">
-        <Container>
+        <Centered>
           <Form onSubmit={e => e.preventDefault()}>
             <label htmlFor="email">Email</label>
             <input id="email" type="text" placeholder="Enter email address" value={email}
             onChange={e => this.setState({email: e.target.value})}/>
+
             <label htmlFor="mobile">Mobile</label>
             <input id="mobile" type="text" placeholder="Enter mobile number" value={mobile}
             onChange={e => this.setState({mobile: e.target.value})}/>
-            <input type="button" onClick={() => this.props.reviewUser({email, mobile})} value="Submit"/>
+
+            <label htmlFor="name">Full name</label>
+            <input id="name" type="text" placeholder="Enter your fullname" value={fullname}
+            onChange={e => this.setState({fullname: e.target.value})}/>
+
+            <label htmlFor="gender">Gender</label>
+            <select value={gender} onChange={e => this.setState({gender: e.target.value})}>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+
+            <input type="button" onClick={() => this.onReviewHandler({email, mobile, fullname, gender})} value="Submit"/>
           </Form>
-        </Container>
+        </Centered>
       </Page>
     )
   }
