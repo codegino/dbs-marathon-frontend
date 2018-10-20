@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Page from '../../components/page';
-import { login} from '../../store/actions/user';
+import { login } from '../../store/actions/user';
 import Centered from '../../components/container'; 
-import InputButton from '../../components/button/InputButton';
+import { InputButton } from '../../components/button';
 
 const Form = styled.form`
   display: flex;
