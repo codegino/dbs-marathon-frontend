@@ -29,7 +29,7 @@ export const reviewUser = (user) => async dispatch => {
   const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   if (!email.match(emailRegex)) {
-    return toast.error('Invalid email!', {
+    return toast.error('Invalid email format!', {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 2000
     });
@@ -82,7 +82,7 @@ export const registerUser = (race) => async dispatch => {
     dispatch(onLoadingEnd());
     history.push('/')
   } catch(e) {
-    toast.error('Something went wrong!', {
+    toast.error('Email or password already in use!', {
       position: toast.POSITION.TOP_CENTER,
       autoClose: 2000
     });
