@@ -44,6 +44,7 @@ const Header = styled.header`
 const Title = styled.div`
   margin-top: 0px;
   font-size: 1.5rem;
+  margin-bottom: 1rem;
 `
 
 const Links = styled.ul`
@@ -73,7 +74,7 @@ const Links = styled.ul`
 
 export default ({ isAuthenticated, current }) => (
   <Header>
-    <Title>DBS Assignment</Title>
+    <Title>DBS Marathon Website</Title>
     <Links>
       {links.map((link, index) => {
         const TheLink = <HeaderLink key={index} current={current} {...link} />;

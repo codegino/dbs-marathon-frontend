@@ -44,6 +44,7 @@ class RegistrationPage extends React.PureComponent {
     return (
       <Page id="login" title="Login" description="Register to marathon.">
         <Centered>
+          <h2>Register</h2>
           <Form onSubmit={e => e.preventDefault()}>
             <label htmlFor="email">Email</label>
             <input id="email" type="text" placeholder="Enter email address" value={email}
