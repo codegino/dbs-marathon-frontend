@@ -4,6 +4,7 @@ import Page from '../../components/page';
 import { reviewUser } from '../../store/actions/user';
 import Centered from '../../components/container';
 import styled from 'styled-components';
+import Button from '../../components/button/InputButton';
 
 const Form = styled.form`
   display: flex;
@@ -62,7 +63,7 @@ class RegistrationPage extends React.PureComponent {
               <option value="female">Female</option>
             </select>
 
-            <input type="button" onClick={() => this.onReviewHandler({email, mobile, fullname, gender})} value="Submit"/>
+            <Button type="button" onClick={() => this.onReviewHandler({email, mobile, fullname, gender})} value="Submit" />
           </Form>
         </Centered>
       </Page>
